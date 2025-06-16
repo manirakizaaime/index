@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ULK GISENYI COMPUS - Discover Knowledge</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        
+        body {
+            font-family: 'Inter', sans-serif; 
+            background-image: url(); 
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed; 
+            
+        }
+        .app-container {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            background-color: rgba(255, 255, 255, 0.95); 
+        }
+        
+        .main-content {
+            flex-grow: 1; 
+            overflow-y: auto; 
+        }
+        .nav-link {
+            @apply px-4 py-2 rounded-md hover:bg-green-600 hover:text-white transition-colors duration-200 cursor-pointer;
+        }
+        .card {
+            @apply bg-white p-6 rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300;
+        }
+        .input-field {
+            @apply mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-green-500 focus:ring focus:ring-green-500 focus:ring-opacity-50 p-2;
+        }
+        .btn-primary {
+            @apply bg-green-700 text-white px-6 py-3 rounded-lg shadow-lg hover:bg-green-800 transition-colors duration-200;
+        }
+        .section-heading {
+            @apply text-3xl font-bold text-gray-800 mb-6 border-b-2 border-green-500 pb-2;
+        }
+        .nested-list ul {
+            list-style: none; 
+            padding-left: 1rem;
+        }
+        .nested-list li {
+            margin-bottom: 0.5rem;
+        }
+        .nested-list ul ul {
+            padding-left: 1.5rem;
+        }
+        
+    </style>
+</head>
+<body class="bg-gray-100 flex justify-center items-start" >
+    
+    <div id="app" class="app-container w-full max-w-7xl mx-auto rounded-lg shadow-lg my-8 overflow-hidden">
+        
+        <header class="bg-green-700 text-white p-6 rounded-t-lg flex flex-col md:flex-row items-center justify-between shadow-md">
+            
+            <div class="flex items-center mb-4 md:mb-0">
+               
+                <svg class="w-12 h-12 mr-3 text-white" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M12 3L1 9l11 6 11-6-11-6zm0 10.98L4.26 9 12 4.02 19.74 9 12 13.98zm0 2.02L1 16.5l11 5.5 11-5.5-11-5.5z"/>
+                </svg>
+                
+                <h1 class="ULK">ULK GISENYI COMPUS</h1>
+                
+            </div>
+
+           
+            <nav>
+                <ul class="flex flex-wrap justify-center space-x-2 md:space-x-4">
+                    <li><a href="#" id="nav-home" class="nav-link">Home</a></li>
+                    <li><a href="#" id="nav-academics" class="nav-link">Academics</a></li>
+                    <li><a href="#" id="nav-admission" class="nav-link">Admission</a></li>
+                    <li><a href="#" id="nav-gallery" class="nav-link">Gallery</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        
+        <main id="main-content" class="main-content p-8 bg-white rounded-b-lg">
+            
+        </main>
+    </div>
+
+    <script>
+        
+        const departments = {
+            'Arts': [
+                {
+                    id: 'english-literature',
+                    name: 'English Literature',
+                    description: 'This course explores major works of English literature from various periods, analyzing themes, literary devices, and historical contexts. Students develop critical reading and writing skills.',
+                    teachers: ['Prof. Ruhumuriza gaspard', 'Dr. DJ M.A'],
+                    timetable: 'kuwa 1: 9:00-11:00 AM, Wed: 1:00-3:00 PM'
+                },
+                {
+                    id: 'sociology',
+                    name: 'Sociology',
+                    description: 'An introduction to the study of human society, social behavior, and social institutions. Topics include culture, social structure, inequality, and social change.',
+                    teachers: ['Prof. mama gakobwa', 'Dr. kelve'],
+                    timetable: 'kuwa 2: 10:00-12:00 PM, Thu: 2:00-4:00 PM'
+                },
+                {
+                    id: 'fine-arts',
+                    name: 'Fine Arts',
+                    description: 'This course covers the fundamentals of visual arts, including drawing, painting, sculpture, and art history. Students develop creative expression and technical skills.',
+                    teachers: ['Prof. gasore', 'Mr. nathan'],
+                    timetable: 'kuwa 3: 1:00-4:00 PM, Fri: 9:00-12:00 PM'
+                },
+                {
+                    id: 'history',
+                    name: 'History',
+                    description: 'A comprehensive study of world history from ancient civilizations to modern times, focusing on key events, movements, and their impact on global societies.',
+                    teachers: ['Dr. poper', 'Prof. kaka'],
+                    timetable: 'kuwa 4: 10:00-12:00 PM, Fri: 1:00-3:00 PM'
+                }
+            ],
+            'Science': [
+                {
+                    id: 'computer-science',
+                    name: 'Computer Science',
+                    description: 'An introductory course to programming concepts, algorithms, data structures, and software development methodologies. Focus on Python and Java.',
+                    teachers: ['Dr. nzayisenga', 'Prof. jean pier'],
+                    timetable: 'kuwa 5: 1:00-3:00 PM, Tue: 9:00-11:00 AM, Thu: 1:00-3:00 PM'
+                },
+                {
+                    id: 'mathematics',
+                    name: 'Mathematics',
+                    description: 'Covers fundamental concepts of calculus, linear algebra, and discrete mathematics, essential for science and engineering disciplines.',
+                    teachers: ['Prof. hategeka', 'Dr. marceline'],
+                    timetable: 'kuwa 7: 9:00-11:00 AM, Fri: 10:00-12:00 PM'
+                },
+                {
+                    id: 'biology',
+                    name: 'Biology',
+                    description: 'Explores the principles of life, including cell biology, genetics, evolution, and ecology. Includes laboratory sessions for practical experience.',
+                    teachers: ['Prof. nibahonge', 'Dr. kado'],
+                    timetable: 'kucyumweru: 1:00-3:00 PM, Thu: 9:00-11:00 AM'
+                },
+                {
+                    id: 'physics',
+                    name: 'Physics',
+                    description: 'An introductory course to classical mechanics, thermodynamics, electromagnetism, and modern physics. Emphasis on problem-solving and experimental methods.',
+                    teachers: ['Dr. pasicasia', 'Prof. Susan kwanza'],
+                    timetable: 'Mon: 10:00-12:00 PM, Wed: 2:00-4:00 PM'
+                }
+            ],
+            'Commerce': [
+                {
+                    id: 'business-administration',
+                    name: 'Business Administration',
+                    description: 'This course provides an overview of essential business functions, including management, marketing, finance, and human resources. Case studies are used for practical application.',
+                    teachers: ['Prof. Chris Evans', 'Dr. Grace Hall'],
+                    timetable: 'Tue: 2:00-4:00 PM, Thu: 10:00-12:00 PM'
+                },
+                {
+                    id: 'accounting',
+                    name: 'Accounting',
+                    description: 'Fundamentals of financial accounting, including recording transactions, preparing financial statements, and analyzing financial performance.',
+                    teachers: ['Prof. Kevin ', 'Dr. Olivia '],
+                    timetable: 'Mon: 9:00-11:00 AM, Wed: 1:00-3:00 PM'
+                },
+                {
+                    id: 'economics',
+                    name: 'Economics',
+                    description: 'An introduction to microeconomics and macroeconomics, covering supply and demand, market structures, national income, inflation, and unemployment.',
+                    teachers: ['Dr. Paul Baker', 'Prof.  King'],
+                    timetable: 'Tue: 9:00-11:00 AM, Thu: 1:00-3:00 PM'
+                },
+                {
+                    id: 'marketing',
+                    name: 'Marketing',
+                    description: 'This course examines the principles and practices of marketing, including market research, product development, pricing strategies, promotion, and distribution.',
+                    teachers: ['Prof. Samantha Wilson', 'Dr. Tom '],
+                    timetable: 'Wed: 10:00-12:00 PM, Fri: 2:00-4:00 PM'
+                }
+            ]
+        };
+
+        
+        const mainContent = document.getElementById('main-content');
+        const navHome = document.getElementById('nav-home');
+        const navAcademics = document.getElementById('nav-academics');
+        const navAdmission = document.getElementById('nav-admission');
+        const navGallery = document.getElementById('nav-gallery');
+
+        
+        function renderPage(page) {
+            mainContent.innerHTML = ''; 
+            [navHome, navAcademics, navAdmission, navGallery].forEach(link => {
+                link.classList.remove('bg-green-600', 'text-white');
+                link.classList.add('text-white'); 
+            });
+
+            if (page.startsWith('course-')) {
+                
+                const courseId = page.substring(7); 
+                let foundCourse = null;
+                for (const dept in departments) {
+                    foundCourse = departments[dept].find(c => c.id === courseId);
+                    if (foundCourse) break;
+                }
+                if (foundCourse) {
+                    navAcademics.classList.add('bg-green-600');
+                    renderCourseDetail(foundCourse);
+                } else {
+                    renderNotFound();
+                }
+            } else {
+                switch (page) {
+                    case 'home':
+                        navHome.classList.add('bg-green-600');
+                        renderHome();
+                        break;
+                    case 'academics':
+                        navAcademics.classList.add('bg-green-600');
+                        renderAcademics();
+                        break;
+                    case 'admission':
+                        navAdmission.classList.add('bg-green-600');
+                        renderAdmission();
+                        break;
+                    case 'gallery':
+                        navGallery.classList.add('bg-green-600');
+                        renderGallery();
+                        break;
+                    default:
+                        renderHome(); 
+                        break;
+                }
+            }
+            mainContent.scrollTop = 0; 
+        }
+
+      
+        function renderHome() {
+            mainContent.innerHTML = `
+                <div class="text-center py-8">
+                    <h2 class="section-heading">Welcome to ULK GISENYI COMPIS!</h2>
+                    <p class="text-gray-700 text-lg mb-8 leading-relaxed">
+                        ULK GISENYI(ULK) is a leading institution dedicated to providing high-quality education, fostering innovation, and promoting research. Located in the vibrant rubavu, Rwanda,ulk offers a dynamic learning environment where students are empowered to achieve their full potential and contribute positively to society. We are committed to academic excellence, student success, and community engagement.
+                    </p>
+                    <img src="gr.jpg" alt="ULK Campus" class="rounded-lg shadow-xl mx-auto mb-8 w-full max-w-2xl object-cover">
+                    <p class="text-gray-600 text-md" >
+                        Explore our diverse academic programs, vibrant student life, and opportunities for growth.
+                    </p>
+                </div>
+            `;
+        }
+
+        
+        function renderAcademics() {
+            let academicsHtml = `<h2 class="section-heading text-center">Academic Departments & Courses</h2>
+                                 <div class="mt-8 text-gray-700 nested-list">`;
+
+            for (const deptName in departments) {
+                academicsHtml += `
+                    <div class="mb-6 p-4 rounded-md bg-green-50 shadow-sm border border-green-100">
+                        <h3 class="text-2xl font-semibold text-green-800 mb-3">${deptName} Department</h3>
+                        <ul class="list-disc ml-6">
+                `;
+                departments[deptName].forEach(course => {
+                    academicsHtml += `
+                            <li><a href="#" class="text-blue-600 hover:underline" onclick="event.preventDefault(); renderPage('course-${course.id}')">${course.name}</a></li>
+                    `;
+                });
+                academicsHtml += `
+                        </ul>
+                    </div>
+                `;
+            }
+            academicsHtml += `</div>`;
+            mainContent.innerHTML = academicsHtml;
+        }
+
+        
+        function renderCourseDetail(course) {
+            mainContent.innerHTML = `
+                <div class="max-w-4xl mx-auto bg-white p-8 rounded-lg shadow-xl">
+                    <h2 class="section-heading text-center">${course.name}</h2>
+
+                    <h3 class="text-2xl font-semibold text-gray-700 mb-3">Course Description</h3>
+                    <p class="text-gray-700 leading-relaxed mb-6">${course.description}</p>
+
+                    <h3 class="text-2xl font-semibold text-gray-700 mb-3">Instructors</h3>
+                    <ul class="list-disc ml-6 text-gray-700 mb-6">
+                        ${course.teachers.map(teacher => `<li>${teacher}</li>`).join('')}
+                    </ul>
+
+                    <h3 class="text-2xl font-semibold text-gray-700 mb-3">Timetable</h3>
+                    <p class="text-gray-700 leading-relaxed mb-6">${course.timetable}</p>
+
+                    <button class="btn-primary" onclick="renderPage('academics')">Back to Academics</button>
+                </div>
+            `;
+        }
+
+        
+        function renderAdmission() {
+            mainContent.innerHTML = `
+                <div class="max-w-2xl mx-auto p-8 bg-white rounded-lg shadow-xl">
+                    <h2 class="section-heading text-center">Admission Application Form</h2>
+                    <form id="admission-form" class="space-y-6">
+                        <div>
+                            <label for="student-name" class="block text-sm font-medium text-gray-700">Full Name</label>
+                            <input type="text" id="student-name" name="student-name" required class="input-field" placeholder="MANIRAKIZA AIME">
+                        </div>
+                        <div>
+                            <label for="student-email" class="block text-sm font-medium text-gray-700">Email Address</label>
+                            <input type="email" id="student-email" name="student-email" required class="input-field" placeholder="manirakizaaime@example.com">
+                        </div>
+                        <div>
+                            <label for="student-phone" class="block text-sm font-medium text-gray-700">Phone Number</label>
+                            <input type="tel" id="student-phone" name="student-phone" class="input-field" placeholder="+250 78">
+                        </div>
+                        <div>
+                            <label for="dob" class="block text-sm font-medium text-gray-700">Date of Birth</label>
+                            <input type="date" id="dob" name="dob" required class="input-field">
+                        </div>
+                        <div>
+                            <label for="gender" class="block text-sm font-medium text-gray-700">Gender</label>
+                            <select id="gender" name="gender" class="input-field">
+                                <option value="">Select Gender</option>
+                                <option value="male">Male</option>
+                                <option value="female">Female</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label for="program" class="block text-sm font-medium text-gray-700">Program of Interest</label>
+                            <select id="program" name="program" required class="input-field">
+                                <option value="">Select Program</option>
+                                <optgroup label="Arts">
+                                    <option value="english-literature">English Literature</option>
+                                    <option value="sociology">Sociology</option>
+                                    <option value="fine-arts">Fine Arts</option>
+                                    <option value="history">History</option>
+                                </optgroup>
+                                <optgroup label="Science">
+                                    <option value="computer-science">Computer Science</option>
+                                    <option value="mathematics">Mathematics</option>
+                                    <option value="biology">Biology</option>
+                                    <option value="physics">Physics</option>
+                                </optgroup>
+                                <optgroup label="Commerce">
+                                    <option value="business-administration">Business Administration</option>
+                                    <option value="accounting">Accounting</option>
+                                    <option value="economics">Economics</option>
+                                    <option value="marketing">Marketing</option>
+                                </optgroup>
+                            </select>
+                        </div>
+                        <div>
+                            <label for="education-level" class="block text-sm font-medium text-gray-700">Highest Education Level</label>
+                            <input type="text" id="education-level" name="education-level" required class="input-field" placeholder="High School Diploma">
+                        </div>
+                        <div>
+                            <label for="motivation" class="block text-sm font-medium text-gray-700">Statement of Motivation (200 words max)</label>
+                            <textarea id="motivation" name="motivation" rows="5" class="input-field" maxlength="2000" placeholder="Tell us why you want to study at KIU..."></textarea>
+                        </div>
+                        <div class="flex items-center">
+                            <input id="agree-terms" name="agree-terms" type="checkbox" required class="h-4 w-4 text-green-600 focus:ring-green-500 border-gray-300 rounded">
+                            <label for="agree-terms" class="ml-2 block text-sm text-gray-900">
+                                I agree to the <a href="#" class="text-blue-600 hover:underline">terms and conditions</a>
+                            </label>
+                        </div>
+                        <div class="text-center">
+                            <button type="submit" class="btn-primary">Submit Application</button>
+                        </div>
+                    </form>
+                    <div id="admission-message" class="mt-4 p-3 rounded-md text-center hidden"></div>
+                </div>
+            `;
+
+            
+            document.getElementById('admission-form').addEventListener('submit', function(event) {
+                event.preventDefault(); 
+                const messageDiv = document.getElementById('admission-message');
+                messageDiv.classList.remove('hidden');
+                messageDiv.classList.add('bg-green-100', 'text-green-800');
+                messageDiv.innerHTML = '<p class="font-semibold">Your application has been submitted successfully! We will review it and get back to you.</p>';
+                
+            });
+        }
+
+        
+        function renderGallery() {
+            let galleryHtml = `<h2 class="section-heading text-center">College Life Gallery</h2>
+                               <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-8">`;
+            const galleryImages = [
+                'lec.jpg',
+                'https://placehold.co/600x400/AED6F1/000000?text=Student%20Activity',
+                'lib.jpg',
+                'https://placehold.co/600x400/F0C7FF/000000?text=Lab%20Session',
+                'ULK-Gisenyi-Campus-1.jpg',
+                'https://placehold.co/600x400/FFB3BA/000000?text=Graduation',
+                'arton160721.jpg',
+                'https://placehold.co/600x400/CCE6FF/000000?text=Cultural%20Event',
+                '644x374-Group-Project.jpg',
+                'https://placehold.co/600x400/C7D2FF/000000?text=Student%20Union',
+                'https://placehold.co/600x400/FFEDC1/000000?text=Research%20Project',
+                '1_E4lFl0-xX1L5uZXIyBQdsQ.jpg'
+            ];
+
+            galleryImages.forEach((imgSrc, index) => {
+                galleryHtml += `
+                    <div class="relative overflow-hidden rounded-lg shadow-lg group">
+                        <img src="${imgSrc}" alt="College Life ${index + 1}" class="w-full h-60 object-cover transform group-hover:scale-105 transition-transform duration-300">
+                        <div class="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                            <p class="text-white text-lg font-semibold">Event ${index + 1}</p>
+                        </div>
+                    </div>
+                `;
+            });
+            galleryHtml += `</div>`;
+            mainContent.innerHTML = galleryHtml;
+        }
+
+       
+        function renderNotFound() {
+            mainContent.innerHTML = `
+                <div class="text-center py-12">
+                    <h2 class="section-heading">Content Not Found</h2>
+                    <p class="text-gray-700 text-lg mb-4">The page or course you are looking for does not exist.</p>
+                    <button class="btn-primary" onclick="renderPage('home')">Go to Home</button>
+                </div>
+            `;
+        }
+
+       
+        navHome.addEventListener('click', (e) => { e.preventDefault(); renderPage('home'); });
+        navAcademics.addEventListener('click', (e) => { e.preventDefault(); renderPage('academics'); });
+        navAdmission.addEventListener('click', (e) => { e.preventDefault(); renderPage('admission'); });
+        navGallery.addEventListener('click', (e) => { e.preventDefault(); renderPage('gallery'); });
+
+        
+        document.addEventListener('DOMContentLoaded', () => {
+            renderPage('home'); 
+        });
+    </script>
+</body>
+</html>
